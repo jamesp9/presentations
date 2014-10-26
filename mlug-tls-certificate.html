@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>MLUG - TLS Certificates</title>
+
+<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+<meta name="author" content="Hakim El Hattab">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = 'css/print/pdf.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+</script>
+
+<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+		<section data-transition-speed="fast">
+			<h1>TLS Certificates</h1>
+			<h3>Creating Self Signed Certificates</h3>
+			<p> James Pinkster </p>
+			<p>
+			<a href="http://mlug-au.org">MLUG</a> - 29/10/2014
+			</p>
+		</section>
+		<section data-transition="zoom">
+			<h3>What Are TLS Certificates</h3>
+			Digital certificates are used as part of the SSL or TLS cryptographic protocols 
+			to a secure communication link, digitally sign and encrypt email or to digitally sign code.
+			
+		</section>
+		<section data-transition="zoom">
+			<h3>How Are Certificates Used</h3>
+			Certificate are usually created by a Certifcate Authority (CA). 
+
+			
+		</section>
+		<section data-transition="zoom">
+			<h3>Certificate Options</h3>
+			<table>
+				<thead>
+				<tr>
+					<th>Type</th>
+					<th>Advantage</th>
+					<th>Disadvantage</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>Self-signed</td>
+					<td>
+						<small>
+						No cost<br>Easy to create
+						</small>
+					</td>
+					<td>
+						<small>
+						Users will get a warning message about untrusted certificate
+						</small>
+					</td>
+				</tr>
+				<tr>
+					<td> Self-signed with PKI *</td>
+					<td>
+						<small>
+						No cost<br>No warning messages once Root CA Certificate is installed
+						</small>
+					</td>
+					<td>
+						<small>
+						Requires administration of certificates.<br>Root CA cert needs to be installed in application
+						</small>
+					</td>
+				</tr>
+				<tr>
+					<td>Free certificate <br>e.g. StartSSL</td>
+					<td>
+						<small>
+						No cost<br>Likely no warning for users.
+						</small>
+					</td>
+					<td>
+						<small>
+						May require user account and supply of additional information.
+						</small>
+					</td>
+				</tr>
+				<tr>
+					<td>Paid certificate</td>
+					<td>
+						<small>
+						No warnings for users.
+						</small>
+					</td>
+					<td>
+						<small>
+						Costs $$$
+						</small>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			
+		</section>
+		<section>
+			<h3>Simlple Self Signed Certificate</h3>
+			<pre>
+			<code>
+				# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver.pem -keyout /etc/ssl/private/webserver.pem
+			</code>
+			</pre>
+			<pre>
+			
+		</section>
+		<section>
+			<section>
+				<h3>Simple Self Signed Certificate</h3>
+				The simplest option for a single website, used by yourself and friends.
+				Will create the certificate pair without a passphrase.
+				Browsers will display warning about self signed certificate.
+				<pre>
+				<code>
+				# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver.pem -keyout /etc/ssl/private/webserver.pem
+				</code>
+				</pre>
+				<table>
+					<tr>
+						<td>-days 3650</td>
+						<td>Valid for 10 years</td>
+					</tr>
+				</table>
+				
+
+			</section>
+			<section>
+				<h4>Simple Self Signed Certificate</h4>
+				<pre>
+
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:<span class="myhl">AU</span>
+State or Province Name (full name) []:<span class="myhl">VIC</span>
+Locality Name (eg, city) [Default City]:<span class="myhl">Melbourne</span>
+Organization Name (eg, company) [Default Company Ltd]:<span class="myhl">Demo Company</span>
+Organizational Unit Name (eg, section) []:<span class="myhl">website</span>
+Common Name (eg, your name or your server's hostname) []:<span class="myhl">example.com</span>
+Email Address []:
+
+
+				</pre>
+				<table>
+					<tr>
+						<td>Common Name</td>
+						<td>The hostname here must match exactly how it would be resolved by DNS.</td>
+					</tr>
+				</table>
+			</section>
+		</section>
+		<section>
+			<h3>CA Options</h3>
+			<ul>
+				<li>CA.pl (openssl package)</li>
+				<li>TinyCA2 *</li>
+				<li>XCA</li>
+			</ul>
+		</section>
+		<section data-transition="cube">
+			<section>
+				<h3>Install TinyCA2</h3>
+				<ul>
+					<li>Debian7</li>
+					<li>Centos7</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Install TinyCA2</h3>
+				<h4>Debian 7</h4>
+				<pre>
+				# aptitude install tinyca
+
+				# tinyca2
+				</pre>
+				
+			</section>
+			<section>
+				<h3>Install TinyCA2</h3>
+				<h4>CentOS 7</h4>
+				Install required packages
+				<pre>
+					# yum install epel-release<br>
+					# yum install perl-Gtk2 perl-gettext<br>
+				</pre>
+				Run tinyca2
+				<pre>
+					# cd /root <br>
+					# git clone https://github.com/glennie/tinyca2.git <br>
+					# tinyca2/tinyca2
+				</pre>
+
+			</section>
+			<section>
+				<h3>Install TinyCA2</h3>
+				<pre>/root/.TinyCA</pre>
+				<pre>
+<span class="dirblue">ROOTCA-Demo/</span>
+├── cacert.key
+├── cacert.pem
+├── <span class="dirblue">certs</span>
+├── <span class="dirblue">crl</span>
+│   └── crl.pem
+├── index.txt
+├── <span class="dirblue">keys</span>
+├── <span class="dirblue">newcerts</span>
+├── openssl.cnf
+├── <span class="dirblue">req</span>
+└── serial
+
+				</pre>
+			</section>
+
+		</section>
+		<section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>Create CA</h4>
+				<img src="/srv/www/presentations/img/CreateCA.png" alt="">
+			</section>
+			<section>
+			</p>
+		</section>
+
+		<section>
+			<h2>Links</h2>
+			<ul>
+				<li><a href="http://"></a></li>
+				<li><a href="http://www.tldp.org/HOWTO/SSL-Certificates-HOWTO/">TLDP - SSL Certificates HOWTO</a></li>
+				<li><a href="https://workaround.org/ispmail/wheezy/tlsifying-your-server">ISP Mail Tutorial - TLS'ifying your server</a></li>
+				<li><a href="http://theworldofapenguin.blogspot.com.au/2007/06/create-your-own-ca-with-tinyca2-part-1.html">CA with TinyCA2</a></li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>THE END</h1>
+			<h3>BY James Pinkster</h3>
+		</section>
+		<section>
+			<h1>Acronyms</h1>
+			PKI - Public Key Infrastructure
+		</section>
+
+	</div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+//transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+// Parallax scrolling
+// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+// parallaxBackgroundSize: '2100px 900px',
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+
+</script>
+
+</body>
+</html>

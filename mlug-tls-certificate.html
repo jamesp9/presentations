@@ -129,27 +129,19 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 			</table>
 			
 		</section>
-		<section>
-			<h3>Simlple Self Signed Certificate</h3>
-			<pre>
-			<code>
-				# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver.pem -keyout /etc/ssl/private/webserver.pem
-			</code>
-			</pre>
-			<pre>
-			
-		</section>
+
 		<section>
 			<section>
 				<h3>Simple Self Signed Certificate</h3>
-				The simplest option for a single website, used by yourself and friends.
-				Will create the certificate pair without a passphrase.
-				Browsers will display warning about self signed certificate.
+				The simplest option for a single application, used by yourself or friends.
+				
 				<pre>
 				<code>
-				# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver.pem -keyout /etc/ssl/private/webserver.pem
+				# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver-crt.pem -keyout /etc/ssl/private/webserver-key.pem
 				</code>
 				</pre>
+				Will create a certificate and key <em>without</em> a passphrase.
+				Browsers will display warning about self signed certificate.
 				<table>
 					<tr>
 						<td>-days 3650</td>
@@ -177,8 +169,6 @@ Organization Name (eg, company) [Default Company Ltd]:<span class="myhl">Demo Co
 Organizational Unit Name (eg, section) []:<span class="myhl">website</span>
 Common Name (eg, your name or your server's hostname) []:<span class="myhl">example.com</span>
 Email Address []:
-
-
 				</pre>
 				<table>
 					<tr>

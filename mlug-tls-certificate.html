@@ -59,7 +59,8 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 		<section>
 			<h3>What Are Certificates</h3>
 			<p>
-			A public key certificate or digital certificate is an electronic document used to prove the ownership of a public key. 
+			A public key certificate or digital certificate is an electronic document used 
+			to prove the ownership of a public key. 
 			are used as part of the SSL or TLS cryptographic protocols	
 			</p>
 			<ul>
@@ -70,7 +71,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 		</section>
 		
 		<section>
-			<h3>How Are Certificates Used</h3>
+			<h3>How Do I Get a Certificate</h3>
 			Certificate are usually created by a Certifcate Authority (CA). 
 		</section>
 		
@@ -112,7 +113,12 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 					</td>
 				</tr>
 				<tr>
-					<td>Free certificate <br>e.g. StartSSL, cacert.org</td>
+					<td>Free certificate from<br>
+						<small>
+						<a href="https://www.startssl.com/">StartSSL</a> or<br>
+						<a href="http://www.cacert.org">CAcert</a>
+						</small>
+					</td>
 					<td>
 						<small>
 						No cost<br>Likely no warning for users.
@@ -148,24 +154,32 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 				The simplest option for a single application, used by yourself or friends.
 				
 				<pre>
-				<code>
-				# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver-crt.pem -keyout /etc/ssl/private/webserver-key.pem
+				<code data-trim>
+# openssl req -new -x509 -days 3650 -nodes -newkey rsa:4096 -out /etc/ssl/certs/webserver-crt.pem -keyout /etc/ssl/private/webserver-key.pem
 				</code>
 				</pre>
 				Will create a certificate and key <em>without</em> a passphrase.
 				Browser will display warning about self signed certificate.
 				<table>
 					<tr>
-						<td>-days 3650</td>
-						<td>Valid for 10 years</td>
+						<td>
+							<pre>-days 3650 </pre>
+						</td>
+						<td>
+							Valid for 10 years
+						</td>
 					</tr>
 					<tr>
-						<td>-out</td>
-						<td>Path and filename to output certificte</td>
+						<td>
+							<pre> -out </pre>
+						</td>
+						<td>Filename for certificte</td>
 					</tr>
 					<tr>
-						<td>-keyout</td>
-						<td>Path and filename to output private key (ensure this location is secured)</td>
+						<td>
+							<pre> -keyout </pre>
+						</td>
+						<td>Filename for private key (ensure this location is secured)</td>
 					</tr>
 				</table>
 				
@@ -182,18 +196,22 @@ There are quite a few fields but you can leave some blank
 For some fields there will be a default value,
 If you enter '.', the field will be left blank.
 -----
-Country Name (2 letter code) [XX]:<span class="myhl">AU</span>
-State or Province Name (full name) []:<span class="myhl">VIC</span>
-Locality Name (eg, city) [Default City]:<span class="myhl">Melbourne</span>
-Organization Name (eg, company) [Default Company Ltd]:<span class="myhl">Demo Company</span>
-Organizational Unit Name (eg, section) []:<span class="myhl">website</span>
-Common Name (eg, your name or your server's hostname) []:<span class="myhl">example.com</span>
+Country Name (2 letter code) [XX]:<span class="hlcolour">AU</span>
+State or Province Name (full name) []:<span class="hlcolour">VIC</span>
+Locality Name (eg, city) [Default City]:<span class="hlcolour">Melbourne</span>
+Organization Name (eg, company) [Default Company Ltd]:<span class="hlcolour">Demo Company</span>
+Organizational Unit Name (eg, section) []:<span class="hlcolour">website</span>
+Common Name (eg, your name or your server's hostname) []:<span class="hlcolour">example.com</span>
 Email Address []:
 				</pre>
 				<table>
 					<tr>
-						<td>Common Name</td>
-						<td>The hostname here must match exactly how it would be resolved by DNS.</td>
+						<td>
+							Common Name
+						</td>
+						<td>
+							The hostname must match exactly how it would be resolved by DNS.
+						</td>
 					</tr>
 				</table>
 			</section>
@@ -202,12 +220,12 @@ Email Address []:
 		<section>
 			<h3>Certificate Authority Options</h3>
 			<ul>
-				<li>CA.pl (openssl package)</li>
-				<li>TinyCA2 *</li>
-				<li>XCA</li>
+				<li>CA.pl <small>(openssl package)</small></li>
+				<li>TinyCA2 <small>(Gtk)</small></li>
+				<li>XCA <small>(Qt)</small></li>
 			</ul>
 		</section>
-		<section >
+		<section data-transition="linear">
 			<section>
 				<h3>Install TinyCA2</h3>
 				<ul>
@@ -218,11 +236,12 @@ Email Address []:
 			<section>
 				<h3>Install TinyCA2</h3>
 				<h4>Debian 7</h4>
-				<pre>
-				# aptitude install tinyca
-
-				# tinyca2
-				</pre>
+				Install package
+				<pre> # aptitude install tinyca </pre> 
+				Run command 
+				<pre> # tinyca2 </pre>
+				First run will create a root CA and configure it.<br>
+				Configs and related files will be created in /root/.TinyCA
 				
 			</section>
 			<section>
@@ -243,19 +262,19 @@ Email Address []:
 			</section>
 			<section>
 				<h3>Install TinyCA2</h3>
-				<pre>/root/.TinyCA</pre>
+				<code>/root/.TinyCA</code>
 				<pre>
-<span class="dirblue">ROOTCA-Demo/</span>
+<span class="dircolour">ROOTCA-Demo/</span>
 ├── cacert.key
 ├── cacert.pem
-├── <span class="dirblue">certs</span>
-├── <span class="dirblue">crl</span>
+├── <span class="dircolour">certs</span>
+├── <span class="dircolour">crl</span>
 │   └── crl.pem
 ├── index.txt
-├── <span class="dirblue">keys</span>
-├── <span class="dirblue">newcerts</span>
+├── <span class="dircolour">keys</span>
+├── <span class="dircolour">newcerts</span>
 ├── openssl.cnf
-├── <span class="dirblue">req</span>
+├── <span class="dircolour">req</span>
 └── serial
 
 				</pre>
@@ -273,12 +292,12 @@ Email Address []:
 				<h4>Create CA</h4>
 				<table>
 					<tr>
-						<td>Common Name:</td>
-						<td></td>
+						<td><pre>Common Name:</pre></td>
+						<td>This name will appear under issued by information </td>
 					</tr>
 					<tr>
-						<td>Valid for (Days):</td>
-						<td></td>
+						<td><pre>Valid for (Days):</pre></td>
+						<td>Defaults to 10 years</td>
 					</tr>
 				</table>
 
@@ -296,12 +315,18 @@ Email Address []:
 				<h4>CA Configuration</h4>
 				<table>
 					<tr>
-						<td>option 1</td>
-						<td></td>
+						<td> <pre>Key Usage (keyUsage)</pre> </td>
+						<td><pre>Certificate Signing, CRL Signing</pre></td>
 					</tr>
 					<tr>
-						<td>option 2</td>
-						<td></td>
+						<td><pre>Netscape Certificate Type (nsCertType)</pre></td>
+						<td><pre>SSL CA, S/MIME CA, Object Signing CA</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<pre>nsCaRevocationUrl<br>nsRevocationUrl</pre>
+						</td>
+						<td>Set these options if using certificate revocation</td>
 					</tr>
 				</table>
 
@@ -312,12 +337,12 @@ Email Address []:
 			<section>
 				<h3>TinyCA2</h3>
 				<h4>Main Window</h4>
-				Insert image here
+				<img src="img/TinycaMainScreen.png" alt="Main Window">
 			</section>
 			<section>
 				<h3>TinyCA2</h3>
 				<h4>Main Window</h4>
-				Toolbar icons have no tooltips
+				Toolbar icons have no tooltips, so here's a quick referece
 				<table>
 					<tr>
 						<td>Exit</td>
@@ -408,7 +433,9 @@ center: true,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 //transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+//transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transition: 'default',
+transitionSpeed: 'fast', // default/fast/slow
 
 // Parallax scrolling
 // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',

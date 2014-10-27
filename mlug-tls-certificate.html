@@ -56,18 +56,25 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 			<img src="img/ThisConnectionIsUntrusted.png" alt="">
 		</section>
 		
-		<section data-transition="zoom">
-			<h3>What Are TLS Certificates</h3>
-			Digital certificates are used as part of the SSL or TLS cryptographic protocols 
-			to a secure communication link, digitally sign and encrypt email or to digitally sign code.
+		<section>
+			<h3>What Are Certificates</h3>
+			<p>
+			A public key certificate or digital certificate is an electronic document used to prove the ownership of a public key. 
+			are used as part of the SSL or TLS cryptographic protocols	
+			</p>
+			<ul>
+				<li>secure communication links</li>
+				<li>digitally sign and encrypt email</li>
+				<li>digitally sign code</li>
+			</ul> 
 		</section>
 		
-		<section data-transition="zoom">
+		<section>
 			<h3>How Are Certificates Used</h3>
 			Certificate are usually created by a Certifcate Authority (CA). 
 		</section>
 		
-		<section data-transition="zoom">
+		<section>
 			<h3>Certificate Options</h3>
 			<table>
 				<thead>
@@ -105,7 +112,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 					</td>
 				</tr>
 				<tr>
-					<td>Free certificate <br>e.g. StartSSL</td>
+					<td>Free certificate <br>e.g. StartSSL, cacert.org</td>
 					<td>
 						<small>
 						No cost<br>Likely no warning for users.
@@ -146,18 +153,26 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 				</code>
 				</pre>
 				Will create a certificate and key <em>without</em> a passphrase.
-				Browsers will display warning about self signed certificate.
+				Browser will display warning about self signed certificate.
 				<table>
 					<tr>
 						<td>-days 3650</td>
 						<td>Valid for 10 years</td>
+					</tr>
+					<tr>
+						<td>-out</td>
+						<td>Path and filename to output certificte</td>
+					</tr>
+					<tr>
+						<td>-keyout</td>
+						<td>Path and filename to output private key (ensure this location is secured)</td>
 					</tr>
 				</table>
 				
 
 			</section>
 			<section>
-				<h4>Simple Self Signed Certificate</h4>
+				<h4>Simple Self Signed Certificate (Continued)</h4>
 				<pre>
 
 You are about to be asked to enter information that will be incorporated
@@ -183,15 +198,16 @@ Email Address []:
 				</table>
 			</section>
 		</section>
+		
 		<section>
-			<h3>CA Options</h3>
+			<h3>Certificate Authority Options</h3>
 			<ul>
 				<li>CA.pl (openssl package)</li>
 				<li>TinyCA2 *</li>
 				<li>XCA</li>
 			</ul>
 		</section>
-		<section data-transition="cube">
+		<section >
 			<section>
 				<h3>Install TinyCA2</h3>
 				<ul>
@@ -250,7 +266,7 @@ Email Address []:
 			<section>
 				<h3>TinyCA2</h3>
 				<h4>Create CA</h4>
-				<img src="/srv/www/presentations/img/CreateCA.png" alt="">
+				<img src="img/CreateCA.png" alt="">
 			</section>
 			<section>
 				<h3>TinyCA2</h3>
@@ -268,6 +284,76 @@ Email Address []:
 
 			</section>
 		</section>
+		
+		<section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>CA Configuration</h4>
+				<img src="img/CAConfiguration.png" alt="">
+			</section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>CA Configuration</h4>
+				<table>
+					<tr>
+						<td>option 1</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>option 2</td>
+						<td></td>
+					</tr>
+				</table>
+
+			</section>
+		</section>
+		
+		<section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>Main Window</h4>
+				Insert image here
+			</section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>Main Window</h4>
+				Toolbar icons have no tooltips
+				<table>
+					<tr>
+						<td>Exit</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</section>
+		
+		<section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>Create Sub-CA</h4>
+			</section>
+			<section>
+				
+			</section>
+		</section>
+		
+		<section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>Create Web site Certificate</h4>
+			</section>
+			<section>
+				
+			</section>
+		</section>
 
 		<section>
 			<h2>Links</h2>
@@ -280,13 +366,28 @@ Email Address []:
 		</section>
 
 		<section>
+			<h1>Acronyms</h1>
+			<table>
+				<tr>
+					<td>PKI</td>
+					<td>Public Key Infrastructure</td>
+				</tr>
+				<tr>
+					<td>SSL</td>
+					<td>Secure Sockets Layer</td>
+				</tr>
+				<tr>
+					<td>TLS</td>
+					<td>Transport Layer Security</td>
+				</tr>
+			</table>
+		</section>
+		
+		<section>
 			<h1>THE END</h1>
 			<h3>BY James Pinkster</h3>
 		</section>
-		<section>
-			<h1>Acronyms</h1>
-			PKI - Public Key Infrastructure
-		</section>
+
 
 	</div>
 
@@ -307,7 +408,7 @@ center: true,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 //transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
 // Parallax scrolling
 // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',

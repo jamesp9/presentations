@@ -345,16 +345,16 @@ Email Address []:
 				Toolbar icons have no tooltips, so here's a quick referece
 				<table>
 					<tr>
-						<td>Exit</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><small>Exit</small></td>
+						<td><small>Open CA</small></td>
+						<td><small>Create a new CA</small></td>
+						<td><small>Import CA</small></td>
+						<td><small>Delete CA</small></td>
+						<td><small>Certificate Details</small></td>
+						<td><small>CA History</small></td>
+						<td><small>Create a new Sub CA</small></td>
+						<td><small>Export CA Certificate</small></td>
+						<td><small>Export CRL</small></td>
 					</tr>
 				</table>
 			</section>
@@ -364,9 +364,38 @@ Email Address []:
 			<section>
 				<h3>TinyCA2</h3>
 				<h4>Create Sub-CA</h4>
+				<p>
+				Ensure "CA" tab is selected.
+				Click third icon from right "Create a new Sub CA"
+				</p>
+				<img src="img/CreateSubCA.png" alt="">
 			</section>
 			<section>
+				<h3>TinyCA2</h3>
+				<h4>Create Sub-CA</h4>
+				<table>
+					<tr>
+						<td><pre>CA Password</pre></td>
+						<td>The password used when the Root CA was created</td>
+					</tr>
+					<tr>
+						<td><pre>Common Name</pre></td>
+						<td>Make this meaningful</td>
+					</tr>
+					<tr>
+						<td><pre>Password</pre></td>
+						<td>This password should be different to the Root CA password, as it could be delegated.</td>
+					</tr>
+				</table>
 				
+			</section>
+			<section>
+				<h3>TinyCA2</h3>
+				<h4>Create Sub-CA</h4>
+				After creating a Sub CA, it will automatically be selected.<br>
+				To go back to the ROOT CA, choose "Open CA"
+				<img src="img/SubCaMainScreen.png" alt="Sub CA Window">
+
 			</section>
 		</section>
 		
@@ -374,10 +403,57 @@ Email Address []:
 			<section>
 				<h3>TinyCA2</h3>
 				<h4>Create Web site Certificate</h4>
+				<img src="img/NewRequest.png" alt="New Request">
+				<p>
+				Click icon fourth from right.<br>
+				Or right click and choose "New Request"
+				</p>
 			</section>
 			<section>
+				<h4>TinyCA2 - Create Web site Certificate</h4>
+				<img src="img/CreateCertificateRequest.png" alt="Create Certificate Request">
 				
 			</section>
+			<section>
+				<h4>TinyCA2 - Create Web site Certificate</h4>
+				<table>
+					<tr>
+						<td><pre>Common Name</pre></td>
+						<td>This must match the hostname as it will be used</td>
+					</tr>
+					<tr>
+						<td><pre>Password</pre></td>
+						<td>This will be removed later. (If left with a password, the web server will ask for it when it restarts)</td>
+					</tr>
+					<tr>
+						<td><pre>Organizational Unit Name</pre></td>
+						<td>Will assist in understanding where the certificate fits in.</td>
+					</tr>
+					
+				</table>
+			</section>
+			<section>
+				<h4>TinyCA2 - Create Web site Certificate</h4>
+				Once the new request is created, it must be signed.
+				<img src="img/MainSignRequest.png" alt="Sign Request">
+				
+
+			</section>
+
+			<section>
+				<h4>TinyCA2 - Create Web site Certificate</h4>
+				<p>
+				Right click on desired request in list, choose <strong>Sign Request</strong>
+				then select <strong>Sign Request (Server)</strong>
+				</p>
+				<img src="img/SignRequestServer.png" alt="Sign Server Request">
+				<p>Enter the password set for the example.org CA</p>
+			</section>
+
+			<section>
+				<h4>TinyCA2 - Create Web site Certificate</h4>
+			</section>
+				
 		</section>
 
 		<section>
@@ -404,6 +480,10 @@ Email Address []:
 				<tr>
 					<td>TLS</td>
 					<td>Transport Layer Security</td>
+				</tr>
+				<tr>
+					<td>CRL</td>
+					<td>Certificate Revocation List</td>
 				</tr>
 			</table>
 		</section>

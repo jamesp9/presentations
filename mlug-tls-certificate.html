@@ -60,19 +60,33 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 			<h3>What Are Certificates</h3>
 			<p>
 			A public key certificate or digital certificate is an electronic document used 
-			to prove the ownership of a public key. 
-			are used as part of the SSL or TLS cryptographic protocols	
+			to prove the ownership of a public key. <br>
+			Certificates are used as part of the SSL or TLS cryptographic protocols	to:
 			</p>
 			<ul>
 				<li>secure communication links</li>
 				<li>digitally sign and encrypt email</li>
 				<li>digitally sign code</li>
 			</ul> 
+			<p>
+				Certificates are issued by a Certificate Authority (CA), these certificates are in turn trusted 
+				by user applications (e.g. browswer, email client) as they typically come with the 
+				Root CA certificate pre-installed.
+			</p>
 		</section>
 		
 		<section>
-			<h3>How Do I Get a Certificate</h3>
-			Certificate are usually created by a Certifcate Authority (CA). 
+			<h3>How Are Certificates Created</h3>
+			<p>
+				Usually certificates are issued by a commercial Certificate Authority (CA), e.g. VeriSign.
+				Where a certificate request is submitted and upon payment the CA will sign and issue your certificate.
+			</p>
+			<p>
+			  It is also possible to setup a Public Key Infrastructure (PKI) and become your own Certificate Authority
+			  to issue certificates for: yourself, friends or even internal company use. The focus of this presentation
+			  will be setting up a CA.
+			</p>
+			
 		</section>
 		
 		<section>

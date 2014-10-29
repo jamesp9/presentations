@@ -542,8 +542,20 @@ Email Address []:
 
 		<section>
 				<h3>Configure Web Server</h3>
+				Nginx configuration
 				<pre>
 					<code>
+	server {
+        	listen 443 ssl;
+        	server_name example.org;
+        	ssl_certificate     /etc/ssl/certs/example.org;
+        	ssl_certificate_key /etc/ssl/private/example.org.key;
+        	ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+	 	ssl_ciphers         HIGH:!aNULL:!MD5;
+		#
+        	#
+        	#
+ 	}
 					</code>
 				</pre>
 		</section>
@@ -565,6 +577,9 @@ Email Address []:
 				<img src="img/FirefoxImportCACertificate.png" alt="Firefox Import CA Certificate">
 			</section>
 
+		</section>
+		<section>
+			<h2>Demo</h2>
 		</section>
 
 		<section>
